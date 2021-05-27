@@ -1,0 +1,14 @@
+<form [formGroup]="toDoList" (ngSubmit)="addToDo(toDoList)">
+  <input type="text" formControlName="addNewToDo" />
+  <button type="submit" [disabled]="!toDoList.valid">add new todo</button>
+  <div formArrayName="toDoListItems">
+    <div *ngFor="let alias of toDoListItems.controls; let i = index">
+      <label [formGroupName]="i">
+        <input type="text" formControlName="name" />
+        <input type="checkbox" formControlName="status" />
+      </label>
+      <button (click)="removeToDo(i)">remove</button>
+     
+    </div>
+  </div>
+</form>
